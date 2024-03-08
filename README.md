@@ -17,6 +17,4 @@ Of course the answers to all of these questions are simple:
 but words are cheap and I want code and results. Also coding AES probably makes for a good intellectual exercise.
 
 ## Can I actually use any of this for security critical work?
-No. That would be really stupid.
-
-
+No. 
