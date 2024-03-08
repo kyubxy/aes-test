@@ -14,28 +14,26 @@ private:
 
 protected:
     uint8_t *plaintext;
-    size_t size;
+    std::size_t size;
     // we'll just store the key in a large buffer and read one byte at a time
     std::vector<uint8_t> key; 
-    uint8_t state[16];
 
     virtual void padPlain(uint8_t *pt, int pad) = 0;
     virtual void byteSub() = 0;
     virtual void shiftRows() = 0;
     virtual void mixCols() = 0;
-    virtual void roundKey(vector<uint8_t> key) = 0;
+    virtual void roundKey(std::vector<uint8_t> key) = 0;
 
 public:
-    AES(uint8_t *plaintext, size_t size, std::vector<uint8_t> key, int rounds=10)
+    AES(uint8_t *plaintext, std::size_t size, std::vector<uint8_t> key, int rounds=10)
     {
         this->plaintext = plaintext;
         this->size = size;
         this->key = key;
         this->rounds = rounds;
-        this->state = {0};
     }
 	   
-    void *compute()
+    void encrypt(uint8_t *ciphertext)
     {
         int keyi = 0;
         std::vector<uint8_t> s(key.begin()+keyi, key.begin()+keyi+4);
